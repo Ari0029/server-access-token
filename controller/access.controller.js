@@ -4,7 +4,7 @@ const path = require("path");
 async function getAccessToken(req, res) {
   const keyPath = path.join(
     __dirname,
-    "../json/project-app-65c58-3304fb741cef.json"
+    "/opt/render/project/src/json/project-app-65c58-3304fb741cef.json"
   );
 
   const auth = new GoogleAuth({
@@ -19,6 +19,7 @@ async function getAccessToken(req, res) {
     res.json(accessToken.token);
   } catch (error) {
     console.error("Error getting access token:", error);
+    res.json({status: 500, message: "Null roif"});
   }
 }
 module.exports = { getAccessToken };
