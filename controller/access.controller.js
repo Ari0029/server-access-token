@@ -2,17 +2,16 @@ const { GoogleAuth } = require("google-auth-library");
 const path = require("path");
 
 async function getAccessToken(req, res) {
-  const keyPath = path.join(
-    __dirname,
-    "/opt/render/project/src/json/project-app-65c58-3304fb741cef.json"
-  );
-
-  const auth = new GoogleAuth({
-    keyFile: keyPath,
-    scopes: "https://www.googleapis.com/auth/firebase.messaging",
-  });
-
   try {
+    // Lấy thông tin cấu hình từ biến môi trường
+    const projectConfig = JSON.parse(process.env.PROJECT_CONFIG);
+
+    // Tạo đối tượng GoogleAuth với thông tin cấu hình lấy từ biến môi trường
+    const auth = new GoogleAuth({
+      credentials: projectConfig,  // Sử dụng cấu hình từ biến môi trường
+      scopes: "https://www.googleapis.com/auth/firebase.messaging",
+    });
+
     const client = await auth.getClient();
     const accessToken = await client.getAccessToken();
     console.log("Access Token:", accessToken.token);
