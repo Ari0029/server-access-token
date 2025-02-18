@@ -3,7 +3,7 @@ const path = require("path");
 
 async function getAccessToken(req, res) {
   const keyPath = path.join(
-      "/opt/render/project/src/secrets/project-app-65c58-3304fb741cef.json" // Chỉ cần đường dẫn tuyệt đối
+      "/etc/secrets/project-app-65c58-3304fb741cef.json" // Chỉ cần đường dẫn tuyệt đối
   );
 
   const auth = new GoogleAuth({
